@@ -11,8 +11,7 @@ from sklearn.neighbors import KNeighborsClassifier
 # Load the model using joblib
 
 # Now try predicting
-st.markdown("<h1>Rice Grain Quality Detection</h1>", unsafe_allow_html=True)
-
+st.title('Rice Grain Quality Detection')
 st.sidebar.header('Provide Input')
 model = st.sidebar.selectbox('Select Methodology',["Logistic Regression","Decision Tree","K Nearest Neighbor","Hybrid"])
 def user_report():
@@ -59,12 +58,12 @@ st.markdown(original_title, unsafe_allow_html=True)
 
 oe = OrdinalEncoder()
 le = LabelEncoder()
-data = pd.read_csv("new_dataset.csv")
+data = pd.read_csv("new_dataset2.csv")
 
 x1,x2,y1,y2=train_test_split(data.iloc[:  , 1:9] , data.iloc[: , 9:].astype('int') , train_size=0.8)
 
 if (model == "Logistic Regression"):
-    lr = LogisticRegression(penalty="none")
+    lr = LogisticRegression()
     lr.fit(x1,y1)
     probability = lr.predict([user_data])
     
@@ -103,7 +102,7 @@ elif(probability[0] == 1):
     else:
         st.image("brown_rough.jpg",width=300)
         
-else:
+elif(probability[0] == 0):
     original_title = '<p style="color:#00f900; font-size: 25px;font-weight: bold;">EXCELLENT</p>'
     st.markdown(original_title, unsafe_allow_html=True)
     if(user_data[4]==1.0):
@@ -111,3 +110,10 @@ else:
     else:
         st.image("brown_medium.jpg",width=300)
         
+else:
+    original_title = '<p style="color:#00f900; font-size: 25px;font-weight: bold;">POOR</p>'
+    st.markdown(original_title, unsafe_allow_html=True)
+    if(user_data[4]==1.0):
+        st.image("white_poor.jpg",width=300)
+    else:
+        st.image("brown_poor.jpg",width=300)
