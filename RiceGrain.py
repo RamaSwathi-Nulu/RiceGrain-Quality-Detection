@@ -58,7 +58,7 @@ st.markdown(original_title, unsafe_allow_html=True)
 
 oe = OrdinalEncoder()
 le = LabelEncoder()
-data = pd.read_csv("new_dataset2.csv")
+data = pd.read_csv("dataset.csv")
 
 x1,x2,y1,y2=train_test_split(data.iloc[:  , 1:9] , data.iloc[: , 9:].astype('int') , train_size=0.8)
 
