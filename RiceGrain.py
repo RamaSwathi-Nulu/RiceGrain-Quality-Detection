@@ -114,6 +114,6 @@ else:
     original_title = '<p style="color:#00f900; font-size: 25px;font-weight: bold;">POOR</p>'
     st.markdown(original_title, unsafe_allow_html=True)
     if(user_data[4]==1.0):
-        st.image("white_poor.jpg",width=300)
+        st.image("white_poor.jpeg",width=300)
     else:
-        st.image("brown_poor.jpg",width=300)
+        st.image("brown_poor.jpeg",width=300)
